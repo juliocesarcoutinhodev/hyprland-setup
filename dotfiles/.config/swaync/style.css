@@ -1,0 +1,34 @@
+/* Janela de Notificação */
+.notification {
+    background-color: #1e1e2e; /* Mocha Base */
+    border-radius: 12px;
+    border: 2px solid #cba6f7; /* Mauve border */
+    margin: 10px;
+    padding: 10px;
+    color: #cdd6f4;
+}
+
+/* Título da Notificação */
+.notification-content .summary {
+    color: #cba6f7;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Corpo do texto */
+.notification-content .body {
+    color: #cdd6f4;
+    font-size: 12px;
+}
+
+/* Botão de fechar ou ações */
+.notification-action {
+    background-color: #313244;
+    border-radius: 8px;
+    color: #cdd6f4;
+    margin: 5px;
+}
+
+.notification-action:hover {
+    background-color: #45475a;
+}

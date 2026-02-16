@@ -1,0 +1,65 @@
+/* --- GERAL --- */
+window {
+    margin: 0px;
+    border: 2px solid #89dceb; /* Borda Sky */
+    background-color: #1e1e2e; /* Fundo Base */
+    border-radius: 15px;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
+}
+
+/* --- CAIXA DE BUSCA --- */
+#input {
+    margin: 5px;
+    border: none;
+    color: #cdd6f4; /* Texto Branco */
+    background-color: #313244; /* Fundo da busca (Surface0) */
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+/* --- LISTA DE ITENS --- */
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 5px;
+    border: none;
+    color: #cdd6f4;
+}
+
+/* --- ITEM DA LISTA (NORMAL) --- */
+#entry {
+    margin: 5px 0px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    padding: 10px;
+}
+
+/* --- ITEM SELECIONADO (O CHARME) --- */
+#entry:selected {
+    background-color: #89dceb; /* Fundo Sky */
+    background: linear-gradient(90deg, #89dceb 0%, #74c7ec 100%); /* Degradê Sky -> Sapphire */
+    border-radius: 10px;
+    outline: none;
+}
+
+#entry:selected #text {
+    color: #1e1e2e; /* Texto escuro para contraste no azul */
+    font-weight: bold;
+}

@@ -1,0 +1,143 @@
+/* --- RESET --- */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    min-height: 0;
+}
+
+/* --- A BARRA PRINCIPAL --- */
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.85);
+    border-bottom: 2px solid #89dceb;
+    border-radius: 15px;
+    color: #cdd6f4;
+    transition: all 0.3s ease;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* --- TOOLTIP --- */
+tooltip {
+    background: #1e1e2e;
+    border: 2px solid #89dceb;
+    border-radius: 10px;
+}
+tooltip label { color: #cdd6f4; }
+
+/* --- MÓDULOS GERAIS --- */
+#clock,
+#workspaces,
+#window,
+#cpu,
+#memory,
+#pulseaudio,
+#pulseaudio.microphone,
+#network,
+#tray,
+#custom-power {
+    background: transparent;
+    padding: 0px 6px;
+    margin: 0px 0px;
+}
+
+/* --- NOME DA JANELA --- */
+#window {
+    color: #cdd6f4;
+    font-weight: bold;
+}
+
+/* --- CLOCK --- */
+#clock {
+    color: #89dceb;
+    font-weight: bold;
+    margin-right: 10px;
+    border-right: 1px solid #45475a;
+    padding-right: 15px;
+}
+
+/* --- WORKSPACES --- */
+#workspaces button {
+    padding: 0 4px;
+    color: #89dceb;
+}
+
+#workspaces button.empty {
+    color: #6c7086;
+}
+
+#workspaces button.active {
+    color: #cba6f7;
+}
+
+#workspaces button:hover {
+    background: transparent;
+    color: #f9e2af;
+}
+
+/* --- DIREITA (HARDWARE) --- */
+#cpu {
+    color: #b4befe; /* Lavender */
+}
+
+#memory {
+    color: #f5e0dc; /* Rosewater */
+    margin-right: 10px;
+    border-right: 1px solid #45475a; /* Divisória separando hardware de áudio */
+    padding-right: 15px;
+}
+
+/* --- DIREITA (ÁUDIO & REDE) --- */
+#pulseaudio { color: #f9e2af; }
+
+#pulseaudio.microphone {
+    color: #fab387;
+    padding-right: 10px;
+    border-right: 1px solid #45475a;
+    margin-right: 5px;
+}
+
+#network { color: #a6e3a1; }
+#tray { margin-right: 5px; }
+
+/* --- BOTÃO POWER --- */
+#custom-power {
+    color: #f38ba8;
+    background-color: transparent;
+    margin-right: 20px;
+    margin-left: 10px;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+#custom-power:hover {
+    background-color: transparent;
+    color: #ffcdd2;
+    text-shadow: 0 0 5px rgba(243, 139, 168, 1);
+}
+#custom-media {
+    color: #a6e3a1; /* Verde Catppuccin */
+    background-color: #313244; /* Fundo levemente mais claro que a barra */
+    border-radius: 10px;
+    padding: 2px 15px; /* Aumentei o preenchimento lateral para 15px */
+    margin: 4px 5px;
+    transition: all 0.3s ease; /* Transição suave para o efeito do mouse */
+}
+
+#custom-media:hover {
+    background-color: #45475a; 
+    color: #b4befe;
+}
+
+tooltip {
+    background: #1e1e2e; /* Mocha Base */
+    border: 2px solid #cba6f7; /* Borda Mauve igual à sua notificação */
+    border-radius: 10px;
+}
+
+tooltip label {
+    color: #cdd6f4;
+    padding: 8px;
+    font-size: 13px;
+}

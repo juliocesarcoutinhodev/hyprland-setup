@@ -1,0 +1,10 @@
+# Local snapshots and runtime backups
+backups/
+
+# Generated during install runtime
+*.log
+
+# macOS / editor noise
+.DS_Store
+.vscode/
+.idea/

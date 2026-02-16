@@ -1,0 +1,158 @@
+{
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "height": 26,
+  "margin-top": 10,
+  "margin-left": 10,
+  "margin-right": 10,
+  "modules-left": [
+    "clock",
+    "hyprland/workspaces",
+    "custom/media"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "pulseaudio",
+    "pulseaudio#microphone",
+    "network",
+    "tray",
+    "custom/power"
+  ],
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 50,
+    "rewrite": {
+      "(.*) - Visual Studio Code": "󰨞  VS Code",
+      "(.*)Visual Studio Code": "󰨞  VS Code",
+      "(.*)Zen Browser": "  Zen Browser",
+      "(.*) — Zen Browser": "  Zen Browser",
+      "(.*)Spotify": "  Spotify",
+      "(.*)Kitty": "  Terminal"
+    },
+    "separate-outputs": true
+  },
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "active": "  ",
+      "default": "  ",
+      "urgent": "  ",
+      "empty": "  "
+    },
+    "persistent-workspaces": {
+      "*": 5
+    }
+  },
+  "custom/media": {
+    "format": "{}",
+    "return-type": "json",
+    "max-length": 40,
+    "escape": true,
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null",
+    "on-click": "playerctl play-pause"
+},
+//   "custom/media": {
+//     "format": "{icon} {text}",
+//     "format-paused": "",
+//     "tooltip": true,
+//     "return-type": "json",
+//     "max-length": 40,
+//     "format-icons": {
+//       "spotify": " ",
+//       "default": "🎜 "
+//     },
+//     "escape": true,
+//     "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null",
+//     "on-click": "playerctl play-pause",
+//     "on-scroll-up": "playerctl next",
+//     "on-scroll-down": "playerctl previous"
+//   },
+  "cpu": {
+    "interval": 10,
+    "format": "  {usage}%",
+    "max-length": 10,
+    "on-click": "missioncenter > /dev/null 2>&1 &"
+    // "on-click": "kitty --title btop_float sh -c btop"
+  },
+  "memory": {
+    "interval": 30,
+    "format": "  {}%",
+    "max-length": 10,
+    "tooltip": true,
+    "tooltip-format": "Memory - {used:0.1f}GB used",
+    "on-click": "missioncenter > /dev/null 2>&1 &"
+    // "on-click": "kitty --title btop_float sh -c btop"
+  },
+  "clock": {
+    "format": "  {:%H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color=\"#89dceb\"><b>{}</b></span>",
+        "days": "<span color=\"#cdd6f4\"><b>{}</b></span>",
+        "weeks": "<span color=\"#74c7ec\"><b>W{}</b></span>",
+        "weekdays": "<span color=\"#f9e2af\"><b>{}</b></span>",
+        "today": "<span color=\"#f38ba8\"><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "  Mute",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol",
+    "tooltip": false
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "  Mute",
+    "on-click": "pavucontrol",
+    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+    "tooltip": false
+  },
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": "󰈀 Connected",
+    "format-disconnected": "⚠ Offline",
+    "tooltip-format": "{ipaddr}"
+  },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 10
+  },
+  "custom/power": {
+    "format": "",
+    "on-click": "wlogout",
+    "tooltip": false
+  }
+}

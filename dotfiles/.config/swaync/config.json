@@ -1,0 +1,58 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ErikReider/SwayNotificationCenter/main/src/config/schema.json",
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "overlay",
+  "control-center-margin-top": 10,
+  "control-center-margin-bottom": 10,
+  "control-center-margin-right": 10,
+  "control-center-margin-left": 10,
+  "notification-icon-size": 64,
+  "notification-body-image-height": 100,
+  "notification-body-image-width": 200,
+  "timeout": 5,
+  "timeout-low": 2,
+  "timeout-critical": 0,
+  "fit-to-screen": true,
+  "control-center-width": 400,
+  "control-center-height": 600,
+  "notification-window-width": 400,
+  "keyboard-shortcuts": true,
+  "image-visibility": "always",
+  "transition-time": 200,
+  "hide-on-clear": false,
+  "pause-on-active-window": false,
+  "reorder-strategy": "first_in_first_out",
+  "scripts": {
+    "example-script": {
+      "exec": "echo \"Hello, world!\"",
+      "urgent": true
+    }
+  },
+  "notification-visibility": {
+    "example-package": {
+      "state": "muted",
+      "urgent": true
+    }
+  },
+  "widgets": [
+    "title",
+    "dnd",
+    "mpris",
+    "notifications"
+  ],
+  "widget-config": {
+    "title": {
+      "text": "Notificações",
+      "clear-all-button": true,
+      "button-text": "Limpar Tudo"
+    },
+    "dnd": {
+      "text": "Não Perturbe"
+    },
+    "mpris": {
+      "title": "Player de Áudio",
+      "max-size": 96
+    }
+  }
+}

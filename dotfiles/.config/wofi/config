@@ -1,0 +1,14 @@
+mode=drun
+show=drun
+width=500
+height=400
+offset_y=0
+allow_images=true
+image_size=24
+insensitive=true
+gtk_dark=true
+prompt=Busca...
+no_actions=true
+allow_markup=true
+location=center
+matching=contains
