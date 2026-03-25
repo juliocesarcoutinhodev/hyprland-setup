@@ -8,6 +8,7 @@ MANIFEST_DIR="$BASE_DIR/manifests"
 INVENTORY_DIR="$BASE_DIR/inventory"
 BACKUP_DIR="$HOME/.local/state/hyprland-setup/backup-$(date +%Y%m%d-%H%M%S)"
 TMP_REPO_DIR=""
+DEFAULT_REPO_URL="https://github.com/juliocesarcoutinhodev/hyprland-setup.git"
 
 PROFILE="${HYPR_SETUP_PROFILE:-full}"
 NETWORK_STACK="${HYPR_SETUP_NETWORK_STACK:-networkd}"
@@ -468,12 +469,10 @@ ensure_dotfiles_available() {
     return
   fi
 
-  local repo_url="${HYPR_SETUP_REPO:-}"
-  if [ -z "$repo_url" ]; then
+  local repo_url="${HYPR_SETUP_REPO:-$DEFAULT_REPO_URL}"
+  if [ -z "${HYPR_SETUP_REPO:-}" ]; then
     log 'Dotfiles nao encontrados ao lado do script.'
-    log 'Defina HYPR_SETUP_REPO para clonar automaticamente o repositorio com os dotfiles.'
-    log "Exemplo: HYPR_SETUP_REPO='https://github.com/seu-usuario/hyprland-setup.git' bash install.sh"
-    exit 1
+    log "Usando repositorio padrao para bootstrap remoto: $repo_url"
   fi
 
   log "Clonando repositorio de dotfiles: $repo_url"

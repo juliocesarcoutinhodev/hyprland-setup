@@ -144,6 +144,12 @@ cd ~/hyprland-setup
 ./install.sh
 ```
 
+Se quiser bootstrap remoto sem clonar o repositório manualmente antes, baixe só o `install.sh`. Ele clona o resto sozinho usando o repositório padrão deste projeto:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/juliocesarcoutinhodev/hyprland-setup/main/install.sh -o install.sh && bash install.sh
+```
+
 Na máquina atual deste snapshot, `./install.sh` sozinho já replica o setup principal porque os defaults do script estão alinhados com este host:
 
 - `HYPR_SETUP_PROFILE=full`
