@@ -1,0 +1,5 @@
+[general]
+copy-command = "wl-copy"
+early-exit = true
+initial-tool = "brush"
+save-after-copy = false

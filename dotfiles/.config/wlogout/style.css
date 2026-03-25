@@ -1,0 +1,60 @@
+* {
+  background-image: none;
+  box-shadow: none;
+}
+
+window {
+  background-color: rgba(30, 30, 46, 0.9);
+}
+
+/* Botões */
+button {
+  border-radius: 12px;
+  border: 1px solid #cba6f7;
+  background-color: #181825;
+
+  background-repeat: no-repeat;
+  background-position: center 30%;
+  background-size: 32%;
+
+  color: #cdd6f4;
+  font-size: 14px;
+  font-family: sans-serif;
+
+  padding-top: 70px;
+}
+
+/* Unificando o comportamento visual: Mouse (hover) e Teclado (focus) */
+button:focus,
+button:active,
+button:hover {
+  background-color: rgb(48, 50, 66);
+  border-color: #cba6f7; /* Garante que a borda fique na cor do tema */
+  outline-style: none; /* Remove a linha pontilhada padrão feia do GTK */
+  box-shadow: 0 0 5px rgba(203, 166, 247, 0.5); /* Adiciona um brilho suave (Glow) */
+}
+
+/* Hover */
+button:hover {
+  background-color: rgb(48, 50, 66);
+}
+
+/* Ícones */
+#lock {
+  background-image: url("./icons/lock.svg");
+}
+#logout {
+  background-image: url("./icons/logout.svg");
+}
+#reboot {
+  background-image: url("./icons/reboot.svg");
+}
+#shutdown {
+  background-image: url("./icons/shutdown.svg");
+}
+#suspend {
+  background-image: url("./icons/suspend.svg");
+}
+#hibernate {
+  background-image: url("./icons/hibernate.svg");
+}

@@ -1,0 +1,74 @@
+#!/bin/bash
+
+AZUL='\033[0;34m'
+VERDE='\033[0;32m'
+VERMELHO='\033[0;31m'
+RESET='\033[0m'
+
+echo -e "${AZUL}--- GERADOR DE WEBAPPS (NATIVEFIER + DASHBOARD ICONS) ---${RESET}"
+
+# Verifica se o nativefier está instalado
+if ! command -v nativefier &> /dev/null; then
+    echo -e "${VERMELHO}Erro: 'nativefier' não encontrado. Instale com: yay -S nativefier-fork${RESET}"
+    exit 1
+fi
+
+read -p "1. Nome do Aplicativo: " NOME
+read -p "2. URL do Site: " URL
+read -p "3. Link do Ícone (PNG): " ICON_URL
+
+BASE_DIR="$HOME/Apps/WebApps"
+mkdir -p "$BASE_DIR"
+mkdir -p "$HOME/.local/share/applications"
+
+cd "$BASE_DIR"
+
+echo -e "${AZUL}Baixando ícone...${RESET}"
+curl -s -L "$ICON_URL" -o "temp_icon.png"
+
+echo -e "${AZUL}Criando binário nativo...${RESET}"
+# Adicionado flags para rodar melhor no Wayland/Hyprland
+nativefier --name "$NOME" \
+           --icon "temp_icon.png" \
+           --single-instance \
+           --enable-features="UseOzonePlatform" \
+           --ozone-platform="wayland" \
+           "$URL"
+
+# Verifica se a pasta foi criada
+PASTA_APP=$(ls -dt */ 2>/dev/null | grep -i "$NOME" | head -n 1 | sed 's/\///')
+
+if [ -z "$PASTA_APP" ]; then
+    echo -e "${VERMELHO}Erro: A pasta do aplicativo não foi criada.${RESET}"
+    rm "temp_icon.png"
+    exit 1
+fi
+
+cd "$PASTA_APP"
+
+# Acha o executável
+EXECUTAVEL=$(find . -maxdepth 1 -executable -type f ! -name "*crashpad*" ! -name "*.so*" | grep -i "$NOME" | head -n 1)
+
+if [ -z "$EXECUTAVEL" ]; then
+    EXECUTAVEL="./$(ls -S | head -n 1)"
+fi
+
+mv "../temp_icon.png" "icon.png"
+
+CAMINHO_FINAL=$(readlink -f "$EXECUTAVEL")
+CAMINHO_ICONE=$(readlink -f "icon.png")
+
+# Cria o atalho .desktop
+cat <<EOF > "$HOME/.local/share/applications/${NOME,,}.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=$NOME
+Exec=$CAMINHO_FINAL %U
+Icon=$CAMINHO_ICONE
+Terminal=false
+Categories=Network;WebBrowser;
+StartupWMClass=$NOME
+EOF
+
+echo -e "${VERDE}✔ Sucesso! O app '$NOME' foi criado corretamente em: $CAMINHO_FINAL${RESET}"

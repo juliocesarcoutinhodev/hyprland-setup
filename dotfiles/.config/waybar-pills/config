@@ -1,0 +1,73 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 40,
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-right": 10,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "cpu",
+        "memory",
+        "pulseaudio",
+        "network",
+        "tray",
+        "custom/power"
+    ],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": "",
+            "urgent": "",
+            "empty": ""
+        }
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%A, %d de %B %Y}"
+    },
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": false,
+        "interval": 2
+    },
+    "memory": {
+        "format": "  {}%"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "󰈀 Connected",
+        "format-disconnected": "⚠ Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}"
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "wlogout",
+        "tooltip": false
+    }
+}

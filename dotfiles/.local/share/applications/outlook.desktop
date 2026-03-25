@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Outlook
+Exec=/home/julio/Apps/WebApps/Outlook-linux-x64/Outlook %U
+Icon=/home/julio/Apps/WebApps/Outlook-linux-x64/icon.png
+Terminal=false
+Categories=Network;WebBrowser;
+StartupWMClass=Outlook

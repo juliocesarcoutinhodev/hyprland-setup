@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Notion
+Exec=/home/julio/Apps/WebApps/Notion-linux-x64/Notion %U
+Icon=/home/julio/Apps/WebApps/Notion-linux-x64/icon.png
+Terminal=false
+Categories=Network;WebBrowser;
+StartupWMClass=Notion

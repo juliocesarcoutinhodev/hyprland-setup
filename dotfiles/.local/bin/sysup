@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# --- Definição de Cores ---
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+print_header() {
+  echo -e "\n${BLUE}========================================${NC}"
+  echo -e "${BLUE}  $1 ${NC}"
+  echo -e "${BLUE}========================================${NC}\n"
+}
+
+# --- Verificação de Conexão de Rede ---
+print_header "Verificando conexão de rede..."
+if ! ping -c 1 google.com &>/dev/null; then
+  echo -e "${RED}✖ Falha na conexão de rede. Não foi possível atualizar.${NC}"
+  exit 1
+fi
+
+# --- 1. Atualização Global ---
+print_header "1. ATUALIZANDO SISTEMA (PACMAN + AUR)"
+if yay -Syu --noconfirm; then
+  echo -e "${GREEN}✔ Sistema atualizado com sucesso.${NC}"
+else
+  echo -e "${RED}✖ Falha na atualização.${NC}"
+  exit 1
+fi
+
+# --- 2. Remoção de Pacotes Órfãos ---
+print_header "2. LIMPANDO DEPENDÊNCIAS ÓRFÃS"
+while [ -n "$(pacman -Qtdq)" ]; do
+  sudo pacman -Rns $(pacman -Qtdq) --noconfirm
+done
+echo -e "${GREEN}✔ Nenhum pacote órfão restante.${NC}"
+
+# --- 3. Limpeza de Cache de Pacotes (Pacman + Yay) ---
+print_header "3. LIMPEZA DE CACHE DE PACOTES"
+sudo paccache -r -k 2
+sudo paccache -ruk0
+yay -Scc --noconfirm
+echo -e "${GREEN}✔ Cache de pacotes otimizado.${NC}"
+
+# --- 4. Limpeza de Logs e Arquivos Temporários ---
+print_header "4. MANUTENÇÃO DE LOGS E TEMPORÁRIOS"
+sudo journalctl --vacuum-time=7d
+find ~/.cache -type f -atime +7 -delete
+echo -e "${GREEN}✔ Logs e caches de usuário antigos limpos.${NC}"
+
+# --- 5. Remoção de Diretórios de Download Residuais ---
+print_header "5. LIMPANDO DIRETÓRIOS DE DOWNLOAD RESIDUAIS"
+sudo find /var/cache/pacman/pkg/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
+echo -e "${GREEN}✔ Resíduos de download removidos.${NC}"
+
+# --- 6. Verificação de Espaço em Disco ---
+print_header "Espaço em disco após a limpeza"
+df -h
+
+# --- 7. Garantia de Java LTS ---
+print_header "7. GARANTINDO APENAS JAVA LTS (17/21/25)"
+if command -v pacman &>/dev/null && command -v archlinux-java &>/dev/null; then
+  sudo pacman -S --needed --noconfirm \
+    jdk17-openjdk jre17-openjdk \
+    jdk21-openjdk jre21-openjdk \
+    jdk25-openjdk jre25-openjdk
+
+  NON_LTS_JAVA=()
+  for pkg in jdk-openjdk jre-openjdk jre-openjdk-headless; do
+    if pacman -Qq "$pkg" &>/dev/null; then
+      NON_LTS_JAVA+=("$pkg")
+    fi
+  done
+
+  if [ ${#NON_LTS_JAVA[@]} -gt 0 ]; then
+    sudo pacman -Rns --noconfirm "${NON_LTS_JAVA[@]}"
+  fi
+
+  if archlinux-java status | grep -q "java-25-openjdk"; then
+    sudo archlinux-java set java-25-openjdk
+  elif archlinux-java status | grep -q "java-21-openjdk"; then
+    sudo archlinux-java set java-21-openjdk
+  elif archlinux-java status | grep -q "java-17-openjdk"; then
+    sudo archlinux-java set java-17-openjdk
+  fi
+
+  java -version
+  archlinux-java status
+  echo -e "${GREEN}✔ Java LTS validado.${NC}"
+else
+  echo -e "${YELLOW}⚠ Ferramentas de Java/Arch não encontradas, pulando etapa Java LTS.${NC}"
+fi
+
+echo -e "\n${GREEN}✔ MANUTENÇÃO FINALIZADA!${NC}\n"

@@ -1,0 +1,67 @@
+/* --- GERAL --- */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: #cdd6f4;
+    
+}
+
+/* --- MÓDULOS (As Pílulas) --- */
+#workspaces,
+#clock,
+#cpu,
+#memory,
+#pulseaudio,
+#network,
+#tray,
+#custom-power {
+    background-color: #1e1e2e; /* Base Mocha */
+    padding: 5px 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    border: 2px solid #89dceb; /* Borda Sky (O charme do tema) */
+    color: #cdd6f4;
+}
+
+/* Espaçamento entre os módulos da direita */
+#cpu, #memory, #pulseaudio, #network, #tray {
+    margin-right: 10px;
+}
+
+/* --- WORKSPACES --- */
+#workspaces button {
+    padding: 0 5px;
+    color: #bac2de;
+}
+
+#workspaces button.active {
+    color: #89dceb; /* Sky Ativo */
+    font-weight: bold;
+}
+
+#workspaces button:hover {
+    background: rgba(137, 220, 235, 0.2); /* Sky com transparência */
+    border-radius: 10px;
+}
+
+/* --- DETALHES --- */
+#clock {
+    color: #fab387; /* Peach */
+    font-weight: bold;
+}
+
+#custom-power {
+    background-color: #313244;
+    color: #f38ba8; /* Red */
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 15px;
+}
