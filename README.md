@@ -144,6 +144,14 @@ cd ~/hyprland-setup
 ./install.sh
 ```
 
+Na máquina atual deste snapshot, `./install.sh` sozinho já replica o setup principal porque os defaults do script estão alinhados com este host:
+
+- `HYPR_SETUP_PROFILE=full`
+- `HYPR_SETUP_NETWORK_STACK=networkd`
+- `HYPR_SETUP_GPU_STACK=auto` detecta AMD corretamente neste hardware
+- `HYPR_SETUP_CPU_UCODE=auto` detecta AMD corretamente neste hardware
+- `HYPR_SETUP_ENABLE_BLUETOOTH=0`
+
 ### 3) Escolher perfil e stack de rede
 
 ```bash
@@ -184,6 +192,7 @@ Valores aceitos:
 - Os webapps não são versionados como binários. O repositório guarda o manifest e os ícones, e o `install.sh` os recria via `nativefier`.
 - O snapshot do Hypr foi ajustado para ficar portátil entre máquinas: monitor genérico e wallpaper com `awww`.
 - O perfil padrão usa `systemd-networkd` porque esse é o stack real da máquina atual.
+- Se o objetivo for formatar esta mesma máquina e voltar para o mesmo setup, `./install.sh` já é o caminho padrão esperado.
 - `linux-zen`, `amd-ucode` e `vulkan-radeon` existem no inventário da máquina, mas a instalação do driver/microcode fica guiada por autodetecção (`auto`) ou override explícito.
 - Se você publicar este repo, revise arquivos com dados pessoais antes do push.
 
